@@ -28,8 +28,6 @@ function App () {
     getSupportedCodes().then(supportedCodesObject => setSupportedCodes(supportedCodesObject))
   }, [])
 
-  console.log(supportedCodes)
-
   return (
     <>
       <header>
@@ -40,26 +38,24 @@ function App () {
         <a href=''>Comprar</a>
         <a href=''>Vender</a>
       </div>
-      <div className='div-input'>
+      <form className='div-input' onSubmit={handleSubmit} name='currencies'>
         <img src='/src/assets/logo.svg' alt='logo moeda' />
-        <form onSubmit={handleSubmit}>
-          <input className='div-input-search' list='supported-currencies' type='list' placeholder='Digite o nome da moeda' value={moeda} onChange={handleChange} />
-          <datalist id='supported-currencies'>
-            {
+        <input className='div-input-search' list='supported-currencies' type='list' placeholder='Digite o nome da moeda' value={moeda} onChange={handleChange} />
+        <datalist id='supported-currencies'>
+          {
               Object.entries(supportedCodes).map(([code, name]) => (
                 <option key={code} value={name} />
               ))
             }
-          </datalist>
-        </form>
-        <p placeholder='0000'>-</p>
+        </datalist>
+        <input className='div-input-search div-input-search_value' type='number' name='' id='' placeholder='R$ 0000' />
         <button className='div-button'>
           <img className='div-input_img' src='/src/assets/logo2.svg' alt='logo botao de converter' />
         </button>
         <img src='/src/assets/logo.svg' alt='logo moeda' />
         <input className='div-input-search' type='text' placeholder='Digite o nome da moeda' />
-        <p placeholder='0000'>-</p>
-      </div>
+        <p className='p' />
+      </form>
     </>
   )
 }
